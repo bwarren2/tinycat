@@ -1,7 +1,8 @@
 FROM python:3.8
 WORKDIR /code/
-COPY requirements.txt .
-RUN pip install -r requirements.txt
+COPY requirements requirements/
+RUN pip install -r requirements/base.txt
 COPY . .
-ENTRYPOINT [ "python", "tinycatapi/manage.py" ]
+WORKDIR /code/tinycatapi/
+ENTRYPOINT [ "python", "manage.py" ]
 CMD [ "runserver", "0:8000" ]
